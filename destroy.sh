@@ -1,2 +1,2 @@
 #!/bin/bash
-kubectl delete -f $1/*.yaml
+kubectl delete -f $1/

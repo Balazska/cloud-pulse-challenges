@@ -4,7 +4,7 @@ metadata:
   name: webserver
 spec:
   selector:
-    app: nginx-v2
+    app: nginx-v1
   ports:
     - protocol: TCP
       port: 80
