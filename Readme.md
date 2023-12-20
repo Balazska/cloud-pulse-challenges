@@ -27,7 +27,7 @@ cd cloud-pulse-challenges
 ```
 ./destroy.sh [challenge_id]
 ```
-> IMPORTANT: if you create additional Kubernetes objects, you have to delete them manually after the challenge
+> FONTOS: ha saját Kubernetes objektumokat hozol létre, azt a challenge végén manuálisan kell törölnöd!
 
 ## Prometheus, grafana ha kell
 Prometheus és grafana elérhető a rendszerben, az alábbi parancsokkal lehet publikusan elérhetővé tenni:
