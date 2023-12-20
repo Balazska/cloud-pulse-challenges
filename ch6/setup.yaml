@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ch6
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ch6
+  template:
+    metadata:
+      labels:
+        app: ch6
+    spec:
+      containers:
+      - name: go-server
+        image: docker.io/balazska/go-server:0.0.5
+        resources:
+          limits:
+            cpu: 100m
+            memory: 15Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ch6
+spec:
+  selector:
+    app: ch6
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: ClusterIP

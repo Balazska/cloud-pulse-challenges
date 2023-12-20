@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ch3
+  template:
+    metadata:
+      labels:
+        app: ch3
+    spec:
+      containers:
+      - name: nginx
+        image: docker.io/nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservice
+spec:
+  selector:
+    app: ch3
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP

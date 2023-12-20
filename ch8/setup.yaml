@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ch8
+  labels:
+    app: ch8
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ch8
+  template:
+    metadata:
+      labels:
+        app: ch8
+    spec:
+      containers:
+      - name: ch8
+        image: docker.io/balazska/seminar-3-webserver:v2
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 75m
+            memory: 128Mi
+          requests:
+            cpu: 75m
+            memory: 64Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ch8
+spec:
+  selector:
+    app: ch8
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
