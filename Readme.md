@@ -96,7 +96,7 @@ kubectl get pods
 
 ## Challenge 5 (ch5)
 ### Leírás
-HPA-t beállította a DevOps team, és azonnal az alábbi terhelésteszttel nézték, hogy működik-e:
+HPA-t beállította a DevOps team, és kb. 2 perc után (amikor a `kubectl get hpa` parancsnál a TARGETS oszlopban már nem \<unknown> volt, azaz a HPA már érzékeli a CPU használatát a podoknak), az alábbi terhelésteszttel nézték, hogy működik-e:
 ```
 kubectl run -i --tty load-generator --rm --image=docker.io/fortio/fortio --restart=Never -- load -keepalive=false -allow-initial-errors -qps 0 -t 120s -connection-reuse 0:0 -c 4 -json - http://ch5:8080 | grep "All done"
 ```
@@ -104,7 +104,7 @@ kubectl run -i --tty load-generator --rm --image=docker.io/fortio/fortio --resta
 De nem nagyon skálázott a HPA. Nézzük meg mi lehet a gond, és  javítsuk a beállítást, hogy ennél a tesztnél legyen skálázás.
 
 ## Challenge 6 (ch6)
-Egy új szolgáltatást telepít a DevOps team a klaszterbe. A tesztelésnél észrevették, hogy minden HTTP hibára fut. Nézzünk utána és oldjuk meg a problémát!
+Egy új web szolgáltatást telepít a DevOps team a klaszterbe (egy go nyelven írt programot). A tesztelésnél észrevették, hogy minden HTTP kérés amit a szolgáltatásnak küldenek, hibára fut. Nézzünk utána és oldjuk meg a problémát!
 
 ### Ellenőrzés
 ```
